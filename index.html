@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>青野英明 | 個人の変容とお金の最先端研究</title>
+  <style>
+    /* ── リセット & ベース ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:    #1B3A6B;
+      --blue-mid:#2A52A0;
+      --red:     #C62828;
+      --red-mid: #E53935;
+      --white:   #FFFFFF;
+      --bg:      #F8F9FC;
+      --text:    #1A1A2E;
+      --muted:   #5A6070;
+      --border:  #E0E4F0;
+      --gradient: linear-gradient(135deg, var(--blue) 0%, #3B2A7A 50%, var(--red) 100%);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── ナビゲーション ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-size: 1.1rem; font-weight: 700; letter-spacing: .04em;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: .875rem; color: var(--muted); font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── ヒーロー ── */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 96px 24px 80px;
+      text-align: center;
+    }
+    /* 炎と水がハートを形成するグラデーション背景 */
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 30% 60%, rgba(27,58,107,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 70% 40%, rgba(198,40,40,.07) 0%, transparent 70%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; }
+
+    /* ハートシンボル */
+    .hero-symbol {
+      width: 72px; height: 72px; margin: 0 auto 28px;
+      position: relative;
+    }
+    .hero-symbol svg { width: 100%; height: 100%; }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      border: 1.5px solid var(--blue-mid);
+      padding: 4px 14px; border-radius: 99px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 900; line-height: 1.25;
+      letter-spacing: -.02em;
+      margin-bottom: 20px;
+    }
+    h1 span.accent-blue { color: var(--blue); }
+    h1 span.accent-red  { color: var(--red); }
+
+    .hero-desc {
+      font-size: clamp(.95rem, 2vw, 1.1rem);
+      color: var(--muted); max-width: 600px; margin: 0 auto 36px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gradient);
+      color: var(--white); font-weight: 700; font-size: .95rem;
+      padding: 14px 32px; border-radius: 99px;
+      box-shadow: 0 4px 20px rgba(27,58,107,.25);
+      transition: opacity .2s, transform .2s;
+    }
+    .hero-cta:hover { opacity: .9; transform: translateY(-2px); }
+
+    /* ── セクション共通 ── */
+    section { padding: 80px 24px; }
+    section:nth-child(even) { background: var(--bg); }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-tag {
+      display: inline-block; font-size: .72rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-tag.blue { color: var(--blue); }
+    .section-tag.red  { color: var(--red); }
+    h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 800; letter-spacing: -.02em; line-height: 1.3;
+    }
+    .section-lead {
+      margin-top: 12px; color: var(--muted); font-size: .95rem;
+    }
+
+    /* ── プロフィール ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px; align-items: start;
+    }
+    .profile-photo {
+      width: 220px; height: 220px; border-radius: 16px;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 3.5rem; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .profile-text h3 {
+      font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;
+    }
+    .profile-text .title {
+      font-size: .85rem; color: var(--blue-mid); font-weight: 600;
+      margin-bottom: 16px; letter-spacing: .04em;
+    }
+    .profile-text p {
+      color: var(--muted); font-size: .95rem; margin-bottom: 12px;
+    }
+    .profile-keywords {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+    }
+    .kw {
+      font-size: .78rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 99px; border: 1.5px solid;
+    }
+    .kw.blue { color: var(--blue); border-color: rgba(27,58,107,.3); }
+    .kw.red  { color: var(--red);  border-color: rgba(198,40,40,.3); }
+
+    /* ── セミナー一覧 ── */
+    .seminar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .seminar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .seminar-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
+    .card-banner {
+      height: 6px;
+      background: var(--gradient);
+    }
+    .card-body { padding: 24px; }
+    .card-badge {
+      display: inline-block; font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; padding: 3px 10px; border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .card-badge.upcoming { background: rgba(27,58,107,.1); color: var(--blue); }
+    .card-badge.past     { background: rgba(198,40,40,.08); color: var(--red); }
+    .card-title {
+      font-size: 1rem; font-weight: 700; line-height: 1.45; margin-bottom: 10px;
+    }
+    .card-meta {
+      font-size: .8rem; color: var(--muted); margin-bottom: 16px;
+      display: flex; flex-wrap: wrap; gap: 12px;
+    }
+    .card-meta span { display: flex; align-items: center; gap: 4px; }
+    .card-link {
+      font-size: .82rem; font-weight: 700; color: var(--blue-mid);
+      display: inline-flex; align-items: center; gap: 4px;
+      transition: gap .2s;
+    }
+    .card-link:hover { gap: 8px; }
+
+    /* ── 過去セミナーアーカイブ ── */
+    .archive-list { display: flex; flex-direction: column; gap: 16px; }
+    .archive-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      background: var(--white);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px 24px;
+      transition: box-shadow .2s;
+    }
+    .archive-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+    .archive-date {
+      flex-shrink: 0; width: 64px; text-align: center;
+      background: var(--gradient);
+      border-radius: 8px; padding: 8px 4px; color: white;
+    }
+    .archive-date .month { font-size: .65rem; font-weight: 700; letter-spacing: .06em; }
+    .archive-date .day   { font-size: 1.4rem; font-weight: 900; line-height: 1; }
+    .archive-date .year  { font-size: .6rem; color: rgba(255,255,255,.75); }
+    .archive-content h4 { font-size: .95rem; font-weight: 700; margin-bottom: 6px; }
+    .archive-content p  { font-size: .83rem; color: var(--muted); line-height: 1.55; }
+    .archive-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 2px 8px;
+      border-radius: 4px; background: var(--bg); color: var(--muted);
+    }
+
+    /* ── note記事 ── */
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .note-card {
+      background: var(--white);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 24px;
+      transition: transform .2s, box-shadow .2s;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .note-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .note-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      color: var(--red); text-transform: uppercase;
+    }
+    .note-card h4 { font-size: .95rem; font-weight: 700; line-height: 1.5; flex: 1; }
+    .note-card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--border); padding-top: 12px;
+      font-size: .78rem; color: var(--muted);
+    }
+    .note-link {
+      font-size: .8rem; font-weight: 700; color: var(--red-mid);
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+
+    /* ── CTA バナー ── */
+    .cta-banner {
+      background: var(--gradient);
+      color: white; text-align: center;
+      padding: 72px 24px;
+    }
+    .cta-banner h2 { color: white; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 12px; }
+    .cta-banner p  { opacity: .85; margin-bottom: 32px; font-size: .95rem; }
+    .cta-btn-white {
+      display: inline-block;
+      background: white; color: var(--blue);
+      font-weight: 800; font-size: .95rem;
+      padding: 14px 36px; border-radius: 99px;
+      transition: opacity .2s, transform .2s;
+    }
+    .cta-btn-white:hover { opacity: .92; transform: translateY(-2px); }
+
+    /* ── フッター ── */
+    footer {
+      background: var(--text); color: rgba(255,255,255,.6);
+      padding: 40px 24px; text-align: center; font-size: .8rem;
+    }
+    footer .footer-name { color: white; font-weight: 700; margin-bottom: 8px; font-size: .95rem; }
+    footer a { color: rgba(255,255,255,.5); transition: color .2s; }
+    footer a:hover { color: white; }
+
+    /* ── レスポンシブ ── */
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-photo { width: 120px; height: 120px; font-size: 2rem; }
+      .archive-item { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<header>
+  <nav>
+    <div class="nav-logo">青野英明</div>
+    <div class="nav-links">
+      <a href="#about">プロフィール</a>
+      <a href="#seminars">セミナー</a>
+      <a href="#archive">アーカイブ</a>
+      <a href="#note">note</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="hero-inner">
+    <!-- 炎と水で形成されたハートのSVG -->
+    <div class="hero-symbol">
+      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#1B3A6B"/>
+            <stop offset="50%"  stop-color="#6B2A8A"/>
+            <stop offset="100%" stop-color="#C62828"/>
+          </linearGradient>
+        </defs>
+        <!-- 水の雫（左側：青） -->
+        <path d="M18 42 C18 32 28 20 36 14 C36 14 20 28 22 42 C22 50 29 56 36 56 C30 54 18 50 18 42Z"
+              fill="#1B3A6B" opacity="0.85"/>
+        <!-- 炎（右側：赤） -->
+        <path d="M54 42 C54 32 44 20 36 14 C36 14 52 28 50 42 C50 50 43 56 36 56 C42 54 54 50 54 42Z"
+              fill="#C62828" opacity="0.85"/>
+        <!-- ハートのアウトライン -->
+        <path d="M36 56 C36 56 14 44 14 30 C14 22 20 16 28 16 C32 16 35 18 36 20 C37 18 40 16 44 16 C52 16 58 22 58 30 C58 44 36 56 36 56Z"
+              fill="url(#heartGrad)" opacity="0.9"/>
+        <!-- 中央の光 -->
+        <circle cx="36" cy="34" r="4" fill="white" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="hero-tag">Hideaki Aono</div>
+    <h1>
+      <span class="accent-blue">個人の変容</span>と<br>
+      <span class="accent-red">お金の最先端研究</span>
+    </h1>
+    <p class="hero-desc">
+      青野英明が主催するセミナーとnoteを通じて、<br>
+      あなたの内側からの変化と、お金の本質への理解を深める場所。
+    </p>
+    <a href="#seminars" class="hero-cta">
+      セミナーを見る
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- プロフィール -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag blue">ABOUT</div>
+      <h2>青野英明とは</h2>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-photo">英</div>
+      <div class="profile-text">
+        <h3>青野 英明</h3>
+        <div class="title">セミナー主催者 / 研究者</div>
+        <p>
+          個人の変容（トランスフォーメーション）とお金の本質を探求するセミナーを主催。
+          心理学・哲学・行動経済学・貨幣論など多角的なアプローチで、
+          「豊かさとは何か」「人はどう変われるか」を参加者と共に問い続ける。
+        </p>
+        <p>
+          noteでは、国内外の最新研究や自身の気づきを継続的に発信。
+          知識だけでなく、内側からの変化を促す場づくりを大切にしている。
+        </p>
+        <div class="profile-keywords">
+          <span class="kw blue">個人の変容</span>
+          <span class="kw blue">マインドセット</span>
+          <span class="kw red">貨幣論</span>
+          <span class="kw red">行動経済学</span>
+          <span class="kw blue">哲学</span>
+          <span class="kw red">豊かさの探求</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 今後のセミナー -->
+<section id="seminars">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag blue">UPCOMING SEMINARS</div>
+      <h2>今後のセミナー</h2>
+      <p class="section-lead">次回の学びの場にぜひご参加ください。</p>
+    </div>
+    <div class="seminar-grid">
+
+      <div class="seminar-card">
+        <div class="card-banner"></div>
+        <div class="card-body">
+          <span class="card-badge upcoming">受付中</span>
+          <div class="card-title">お金の呪縛から自由になる — 貨幣と心理の交差点</div>
+          <div class="card-meta">
+            <span>📅 2026年6月15日（日）</span>
+            <span>⏰ 14:00〜17:00</span>
+            <span>📍 東京・渋谷 / オンライン</span>
+          </div>
+          <a href="#" class="card-link">詳細・申込 →</a>
+        </div>
+      </div>
+
+      <div class="seminar-card">
+        <div class="card-banner"></div>
+        <div class="card-body">
+          <span class="card-badge upcoming">受付中</span>
+          <div class="card-title">変容の哲学 — 「変わりたい」という欲求の正体</div>
+          <div class="card-meta">
+            <span>📅 2026年7月5日（土）</span>
+            <span>⏰ 13:00〜16:30</span>
+            <span>📍 オンライン（Zoom）</span>
+          </div>
+          <a href="#" class="card-link">詳細・申込 →</a>
+        </div>
+      </div>
+
+      <div class="seminar-card">
+        <div class="card-banner"></div>
+        <div class="card-body">
+          <span class="card-badge upcoming">近日公開</span>
+          <div class="card-title">豊かさの再定義 — 最新行動経済学と内なる価値観</div>
+          <div class="card-meta">
+            <span>📅 2026年8月（予定）</span>
+            <span>⏰ 詳細調整中</span>
+            <span>📍 未定</span>
+          </div>
+          <a href="#" class="card-link">情報を受け取る →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 過去のセミナーアーカイブ -->
+<section id="archive">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag red">PAST SEMINARS</div>
+      <h2>過去のセミナー</h2>
+      <p class="section-lead">これまでの学びの記録。内容の概要をご覧いただけます。</p>
+    </div>
+    <div class="archive-list">
+
+      <div class="archive-item">
+        <div class="archive-date">
+          <div class="month">MAY</div>
+          <div class="day">10</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="archive-content">
+          <h4>信頼とお金 — なぜ人はお金を「信じる」のか</h4>
+          <p>貨幣が持つ「集合的フィクション」としての性質と、それを支える人間心理を探求。
+            ユヴァル・ノア・ハラリの貨幣論から始まり、日本社会における信頼と経済の関係を読み解いた。</p>
+          <div class="archive-tags">
+            <span class="tag">貨幣論</span>
+            <span class="tag">社会心理</span>
+            <span class="tag">信頼</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="archive-item">
+        <div class="archive-date">
+          <div class="month">MAR</div>
+          <div class="day">22</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="archive-content">
+          <h4>内なる声を聴く — 自己変容の入口としての対話</h4>
+          <p>自己との深い対話を通じた変容プロセスを体験型で探求。
+            参加者同士の対話ワークを交えながら、「変わること」への抵抗とその先にある自由を扱った。</p>
+          <div class="archive-tags">
+            <span class="tag">自己変容</span>
+            <span class="tag">対話</span>
+            <span class="tag">ワーク</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="archive-item">
+        <div class="archive-date">
+          <div class="month">JAN</div>
+          <div class="day">18</div>
+          <div class="year">2026</div>
+        </div>
+        <div class="archive-content">
+          <h4>2026年の経済と心理 — 最新研究から読む豊かさの地図</h4>
+          <p>2025〜2026年の行動経済学・神経経済学の最新知見をもとに、現代人がお金に対して抱く
+            恐怖・執着・解放感の構造を解説。参加者から「視点ががらりと変わった」と好評。</p>
+          <div class="archive-tags">
+            <span class="tag">行動経済学</span>
+            <span class="tag">神経経済学</span>
+            <span class="tag">最新研究</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="archive-item">
+        <div class="archive-date">
+          <div class="month">NOV</div>
+          <div class="day">9</div>
+          <div class="year">2025</div>
+        </div>
+        <div class="archive-content">
+          <h4>恐れからの解放 — お金と自己価値の結びつきを解く</h4>
+          <p>「お金がないと価値がない」という無意識の信念の起源を探り、その書き換えのプロセスを学ぶ。
+            心理療法と経済哲学を統合したアプローチで、参加者の深い内省を促した。</p>
+          <div class="archive-tags">
+            <span class="tag">マインドセット</span>
+            <span class="tag">心理療法</span>
+            <span class="tag">自己価値</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- note記事 -->
+<section id="note">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag red">NOTE</div>
+      <h2>noteの最新記事</h2>
+      <p class="section-lead">個人の変容とお金の研究、最先端の知見を継続発信しています。</p>
+    </div>
+    <div class="note-grid">
+
+      <div class="note-card">
+        <div class="note-label">お金の研究</div>
+        <h4>お金は「感情の貯蔵庫」である — 最新神経経済学が示す新事実</h4>
+        <div class="note-card-footer">
+          <span>2026.05.20</span>
+          <a href="#" class="note-link">読む →</a>
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div class="note-label">個人の変容</div>
+        <h4>変わることを「許す」 — 変容を妨げる内なる防衛機制の正体</h4>
+        <div class="note-card-footer">
+          <span>2026.05.12</span>
+          <a href="#" class="note-link">読む →</a>
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div class="note-label">最先端研究</div>
+        <h4>2026年、「豊かさ研究」はどこへ向かうのか — 国際動向まとめ</h4>
+        <div class="note-card-footer">
+          <span>2026.04.30</span>
+          <a href="#" class="note-link">読む →</a>
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div class="note-label">お金の研究</div>
+        <h4>なぜ「節約」が苦しいのか — 意志力モデルから資源配分モデルへ</h4>
+        <div class="note-card-footer">
+          <span>2026.04.15</span>
+          <a href="#" class="note-link">読む →</a>
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div class="note-label">個人の変容</div>
+        <h4>「自分らしさ」という幻想と、それを超えた先にあるもの</h4>
+        <div class="note-card-footer">
+          <span>2026.04.02</span>
+          <a href="#" class="note-link">読む →</a>
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div class="note-label">最先端研究</div>
+        <h4>感謝とお金の相関 — 実験経済学が明かした驚きのデータ</h4>
+        <div class="note-card-footer">
+          <span>2026.03.20</span>
+          <a href="#" class="note-link">読む →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top: 40px;">
+      <a href="#" class="hero-cta" style="background: var(--gradient);">
+        noteをすべて見る
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTAバナー -->
+<div class="cta-banner">
+  <h2>次のセミナーに参加してみませんか？</h2>
+  <p>メールアドレスを登録するだけで、最新セミナー情報をいち早くお届けします。</p>
+  <a href="#seminars" class="cta-btn-white">セミナーを確認する</a>
+</div>
+
+<!-- フッター -->
+<footer>
+  <div class="footer-name">青野英明</div>
+  <p>© 2026 Hideaki Aono. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
