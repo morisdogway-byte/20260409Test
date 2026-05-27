@@ -48,9 +48,9 @@
       color: var(--text);
     }
     .nav-logo img {
-      width: 40px; height: 40px;
-      object-fit: contain; flex-shrink: 0;
-      filter: drop-shadow(0 1px 4px rgba(0,0,0,.25));
+      width: 40px; height: 40px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0;
+      box-shadow: 0 0 0 2px rgba(198,40,40,.4), 0 0 0 4px rgba(27,58,107,.25);
     }
     .nav-links { display: flex; gap: 32px; }
     .nav-links a {
@@ -78,13 +78,17 @@
     /* ロゴ画像 */
     .hero-symbol {
       width: 200px; height: 200px; margin: 0 auto 36px;
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 3px rgba(198,40,40,.4),
+        0 0 0 6px rgba(27,58,107,.3),
+        0 12px 48px rgba(0,0,0,.3),
+        0 0 60px rgba(198,40,40,.2),
+        0 0 60px rgba(27,58,107,.2);
     }
     .hero-symbol img {
-      width: 100%; height: 100%; object-fit: contain; display: block;
-      filter:
-        drop-shadow(0 0 24px rgba(198,40,40,.5))
-        drop-shadow(0 0 24px rgba(27,58,107,.5))
-        drop-shadow(0 8px 24px rgba(0,0,0,.3));
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; border-radius: 50%;
     }
 
     .hero-tag {
@@ -147,13 +151,15 @@
     }
     .profile-photo {
       width: 220px; height: 220px; flex-shrink: 0;
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 3px rgba(198,40,40,.4),
+        0 0 0 6px rgba(27,58,107,.3),
+        0 8px 32px rgba(0,0,0,.25);
     }
     .profile-photo img {
-      width: 100%; height: 100%; object-fit: contain; display: block;
-      filter:
-        drop-shadow(0 0 16px rgba(198,40,40,.4))
-        drop-shadow(0 0 16px rgba(27,58,107,.4))
-        drop-shadow(0 4px 16px rgba(0,0,0,.2));
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; border-radius: 50%;
     }
     .profile-text h3 {
       font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;
