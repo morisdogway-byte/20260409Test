@@ -43,9 +43,13 @@
       height: 64px;
     }
     .nav-logo {
-      font-size: 1.1rem; font-weight: 700; letter-spacing: .04em;
-      background: var(--gradient);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: .04em;
+      color: var(--text);
+    }
+    .nav-logo img {
+      width: 36px; height: 36px; border-radius: 8px;
+      object-fit: cover; flex-shrink: 0;
     }
     .nav-links { display: flex; gap: 32px; }
     .nav-links a {
@@ -70,12 +74,13 @@
     }
     .hero-inner { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; }
 
-    /* ハートシンボル */
+    /* ロゴ画像 */
     .hero-symbol {
-      width: 72px; height: 72px; margin: 0 auto 28px;
-      position: relative;
+      width: 160px; height: 160px; margin: 0 auto 32px;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.25);
     }
-    .hero-symbol svg { width: 100%; height: 100%; }
+    .hero-symbol img { width: 100%; height: 100%; object-fit: cover; }
 
     .hero-tag {
       display: inline-block;
@@ -297,7 +302,10 @@
 <!-- ナビゲーション -->
 <header>
   <nav>
-    <div class="nav-logo">青野英明</div>
+    <div class="nav-logo">
+      <img src="logo.png" alt="炎と水のハートロゴ" />
+      青野英明
+    </div>
     <div class="nav-links">
       <a href="#about">プロフィール</a>
       <a href="#seminars">セミナー</a>
@@ -312,26 +320,7 @@
   <div class="hero-inner">
     <!-- 炎と水で形成されたハートのSVG -->
     <div class="hero-symbol">
-      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%"   stop-color="#1B3A6B"/>
-            <stop offset="50%"  stop-color="#6B2A8A"/>
-            <stop offset="100%" stop-color="#C62828"/>
-          </linearGradient>
-        </defs>
-        <!-- 水の雫（左側：青） -->
-        <path d="M18 42 C18 32 28 20 36 14 C36 14 20 28 22 42 C22 50 29 56 36 56 C30 54 18 50 18 42Z"
-              fill="#1B3A6B" opacity="0.85"/>
-        <!-- 炎（右側：赤） -->
-        <path d="M54 42 C54 32 44 20 36 14 C36 14 52 28 50 42 C50 50 43 56 36 56 C42 54 54 50 54 42Z"
-              fill="#C62828" opacity="0.85"/>
-        <!-- ハートのアウトライン -->
-        <path d="M36 56 C36 56 14 44 14 30 C14 22 20 16 28 16 C32 16 35 18 36 20 C37 18 40 16 44 16 C52 16 58 22 58 30 C58 44 36 56 36 56Z"
-              fill="url(#heartGrad)" opacity="0.9"/>
-        <!-- 中央の光 -->
-        <circle cx="36" cy="34" r="4" fill="white" opacity="0.4"/>
-      </svg>
+      <img src="logo.png" alt="炎と水が結ぶハート — 青野英明のシンボル" />
     </div>
 
     <div class="hero-tag">Hideaki Aono</div>
@@ -358,26 +347,37 @@
       <h2>青野英明とは</h2>
     </div>
     <div class="profile-grid">
-      <div class="profile-photo">英</div>
+      <div class="profile-photo">
+        <img src="logo.png" alt="ロゴ" style="width:100%;height:100%;object-fit:cover;border-radius:16px;" />
+      </div>
       <div class="profile-text">
         <h3>青野 英明</h3>
-        <div class="title">セミナー主催者 / 研究者</div>
+        <div class="title">社会派税理士・流動系デザイナー・サポーター</div>
         <p>
-          個人の変容（トランスフォーメーション）とお金の本質を探求するセミナーを主催。
-          心理学・哲学・行動経済学・貨幣論など多角的なアプローチで、
-          「豊かさとは何か」「人はどう変われるか」を参加者と共に問い続ける。
+          人と社会を流動系に戻すお手伝いをしています。自然界のデザインに沿って、
+          持続可能な社会を共に協創することを目指しています。
         </p>
         <p>
-          noteでは、国内外の最新研究や自身の気づきを継続的に発信。
-          知識だけでなく、内側からの変化を促す場づくりを大切にしている。
+          世界を会計でつなぎ、統合（新システム）へ。
+          超理性・実践智・流動系を重視した相互理解とメタ認知に情熱を注いでいます。
         </p>
+        <div style="margin-top:16px;">
+          <a href="https://aonohideaki.com/" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:700;
+                    color:var(--blue-mid);border:1.5px solid var(--blue-mid);
+                    padding:6px 16px;border-radius:99px;transition:background .2s,color .2s;"
+             onmouseover="this.style.background='var(--blue-mid)';this.style.color='white'"
+             onmouseout="this.style.background='transparent';this.style.color='var(--blue-mid)'">
+            🌐 aonohideaki.com
+          </a>
+        </div>
         <div class="profile-keywords">
-          <span class="kw blue">個人の変容</span>
-          <span class="kw blue">マインドセット</span>
-          <span class="kw red">貨幣論</span>
-          <span class="kw red">行動経済学</span>
-          <span class="kw blue">哲学</span>
-          <span class="kw red">豊かさの探求</span>
+          <span class="kw blue">社会派税理士</span>
+          <span class="kw blue">流動系デザイナー</span>
+          <span class="kw red">会計・統合</span>
+          <span class="kw red">持続可能な社会</span>
+          <span class="kw blue">超理性・実践智</span>
+          <span class="kw red">メタ認知</span>
         </div>
       </div>
     </div>
@@ -398,41 +398,13 @@
         <div class="card-banner"></div>
         <div class="card-body">
           <span class="card-badge upcoming">受付中</span>
-          <div class="card-title">お金の呪縛から自由になる — 貨幣と心理の交差点</div>
+          <div class="card-title">（Peatixのセミナータイトルをここに入れてください）</div>
           <div class="card-meta">
-            <span>📅 2026年6月15日（日）</span>
-            <span>⏰ 14:00〜17:00</span>
-            <span>📍 東京・渋谷 / オンライン</span>
+            <span>📅 （開催日）</span>
+            <span>⏰ （時間）</span>
+            <span>📍 （場所）</span>
           </div>
-          <a href="#" class="card-link">詳細・申込 →</a>
-        </div>
-      </div>
-
-      <div class="seminar-card">
-        <div class="card-banner"></div>
-        <div class="card-body">
-          <span class="card-badge upcoming">受付中</span>
-          <div class="card-title">変容の哲学 — 「変わりたい」という欲求の正体</div>
-          <div class="card-meta">
-            <span>📅 2026年7月5日（土）</span>
-            <span>⏰ 13:00〜16:30</span>
-            <span>📍 オンライン（Zoom）</span>
-          </div>
-          <a href="#" class="card-link">詳細・申込 →</a>
-        </div>
-      </div>
-
-      <div class="seminar-card">
-        <div class="card-banner"></div>
-        <div class="card-body">
-          <span class="card-badge upcoming">近日公開</span>
-          <div class="card-title">豊かさの再定義 — 最新行動経済学と内なる価値観</div>
-          <div class="card-meta">
-            <span>📅 2026年8月（予定）</span>
-            <span>⏰ 詳細調整中</span>
-            <span>📍 未定</span>
-          </div>
-          <a href="#" class="card-link">情報を受け取る →</a>
+          <a href="https://peatix.com/event/4955852" target="_blank" rel="noopener" class="card-link">詳細・申込 →</a>
         </div>
       </div>
 
@@ -537,63 +509,81 @@
     <div class="note-grid">
 
       <div class="note-card">
-        <div class="note-label">お金の研究</div>
-        <h4>お金は「感情の貯蔵庫」である — 最新神経経済学が示す新事実</h4>
+        <div class="note-label">note</div>
+        <h4>（記事①のタイトルをここに入れてください）</h4>
         <div class="note-card-footer">
-          <span>2026.05.20</span>
-          <a href="#" class="note-link">読む →</a>
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/n461f6a031ba9" target="_blank" rel="noopener" class="note-link">読む →</a>
         </div>
       </div>
 
       <div class="note-card">
-        <div class="note-label">個人の変容</div>
-        <h4>変わることを「許す」 — 変容を妨げる内なる防衛機制の正体</h4>
+        <div class="note-label">note</div>
+        <h4>（記事②のタイトルをここに入れてください）</h4>
         <div class="note-card-footer">
-          <span>2026.05.12</span>
-          <a href="#" class="note-link">読む →</a>
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/n2a89000fca1c" target="_blank" rel="noopener" class="note-link">読む →</a>
         </div>
       </div>
 
       <div class="note-card">
-        <div class="note-label">最先端研究</div>
-        <h4>2026年、「豊かさ研究」はどこへ向かうのか — 国際動向まとめ</h4>
+        <div class="note-label">note</div>
+        <h4>（記事③のタイトルをここに入れてください）</h4>
         <div class="note-card-footer">
-          <span>2026.04.30</span>
-          <a href="#" class="note-link">読む →</a>
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/ne1de63b49f16" target="_blank" rel="noopener" class="note-link">読む →</a>
         </div>
       </div>
 
       <div class="note-card">
-        <div class="note-label">お金の研究</div>
-        <h4>なぜ「節約」が苦しいのか — 意志力モデルから資源配分モデルへ</h4>
+        <div class="note-label">note</div>
+        <h4>（記事④のタイトルをここに入れてください）</h4>
         <div class="note-card-footer">
-          <span>2026.04.15</span>
-          <a href="#" class="note-link">読む →</a>
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/na11cf0b9150e" target="_blank" rel="noopener" class="note-link">読む →</a>
         </div>
       </div>
 
       <div class="note-card">
-        <div class="note-label">個人の変容</div>
-        <h4>「自分らしさ」という幻想と、それを超えた先にあるもの</h4>
+        <div class="note-label">note</div>
+        <h4>（記事⑤のタイトルをここに入れてください）</h4>
         <div class="note-card-footer">
-          <span>2026.04.02</span>
-          <a href="#" class="note-link">読む →</a>
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/n3310f5e50256" target="_blank" rel="noopener" class="note-link">読む →</a>
         </div>
       </div>
 
       <div class="note-card">
-        <div class="note-label">最先端研究</div>
-        <h4>感謝とお金の相関 — 実験経済学が明かした驚きのデータ</h4>
+        <div class="note-label">note</div>
+        <h4>（記事⑥のタイトルをここに入れてください）</h4>
         <div class="note-card-footer">
-          <span>2026.03.20</span>
-          <a href="#" class="note-link">読む →</a>
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/n00ecc3e8b40c" target="_blank" rel="noopener" class="note-link">読む →</a>
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div class="note-label">note</div>
+        <h4>（記事⑦のタイトルをここに入れてください）</h4>
+        <div class="note-card-footer">
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/nd8ee3194c3dc" target="_blank" rel="noopener" class="note-link">読む →</a>
+        </div>
+      </div>
+
+      <div class="note-card">
+        <div class="note-label">note</div>
+        <h4>（記事⑧のタイトルをここに入れてください）</h4>
+        <div class="note-card-footer">
+          <span></span>
+          <a href="https://note.com/aonohideaki/n/nfd27c71d3d10" target="_blank" rel="noopener" class="note-link">読む →</a>
         </div>
       </div>
 
     </div>
 
     <div style="text-align:center; margin-top: 40px;">
-      <a href="#" class="hero-cta" style="background: var(--gradient);">
+      <a href="https://note.com/aonohideaki" target="_blank" rel="noopener" class="hero-cta" style="background: var(--gradient);">
         noteをすべて見る
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
