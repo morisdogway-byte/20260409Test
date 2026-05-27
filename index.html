@@ -262,22 +262,37 @@
       display: inline-flex; align-items: center; gap: 4px;
     }
 
-    /* ── CTA バナー ── */
-    .cta-banner {
+    /* ── メール登録セクション ── */
+    .register-section {
       background: var(--gradient);
-      color: white; text-align: center;
-      padding: 72px 24px;
+      padding: 80px 24px;
+      text-align: center;
     }
-    .cta-banner h2 { color: white; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 12px; }
-    .cta-banner p  { opacity: .85; margin-bottom: 32px; font-size: .95rem; }
-    .cta-btn-white {
-      display: inline-block;
-      background: white; color: var(--blue);
-      font-weight: 800; font-size: .95rem;
-      padding: 14px 36px; border-radius: 99px;
-      transition: opacity .2s, transform .2s;
+    .register-section h2 {
+      color: white; font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800; margin-bottom: 10px;
     }
-    .cta-btn-white:hover { opacity: .92; transform: translateY(-2px); }
+    .register-section .lead {
+      color: rgba(255,255,255,.85); font-size: .95rem; margin-bottom: 36px;
+    }
+    .gform-wrapper {
+      max-width: 600px; margin: 0 auto;
+      background: white; border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,.25);
+    }
+    .gform-wrapper iframe {
+      display: block; width: 100%;
+      border: none; min-height: 480px;
+    }
+    .gform-placeholder {
+      padding: 48px 32px;
+      color: var(--muted); font-size: .9rem;
+      line-height: 1.8;
+    }
+    .gform-placeholder strong {
+      display: block; font-size: 1rem; color: var(--text); margin-bottom: 8px;
+    }
 
     /* ── フッター ── */
     footer {
@@ -311,6 +326,7 @@
       <a href="#seminars">セミナー</a>
       <a href="#archive">アーカイブ</a>
       <a href="#note">note</a>
+      <a href="#register" style="color:var(--red);font-weight:700;">メール登録</a>
     </div>
   </nav>
 </header>
@@ -561,11 +577,23 @@
   </div>
 </section>
 
-<!-- CTAバナー -->
-<div class="cta-banner">
-  <h2>次のセミナーに参加してみませんか？</h2>
-  <p>メールアドレスを登録するだけで、最新セミナー情報をいち早くお届けします。</p>
-  <a href="#seminars" class="cta-btn-white">セミナーを確認する</a>
+<!-- メール登録 -->
+<div id="register" class="register-section">
+  <h2>最新セミナー情報を受け取る</h2>
+  <p class="lead">メールアドレスを登録するだけで、最新セミナー情報をいち早くお届けします。</p>
+  <div class="gform-wrapper">
+    <!--
+      【設定方法】
+      1. Google フォームでメールアドレス収集フォームを作成
+      2. 右上「送信」→「<>」（埋め込み）タブ → iframe コードをコピー
+      3. 下の <div class="gform-placeholder"> をそのまま <iframe ...> タグに置き換える
+    -->
+    <div class="gform-placeholder">
+      <strong>📋 Googleフォームを設定してください</strong>
+      Google フォームの埋め込みコード（&lt;iframe&gt;）をここに貼り付けると、<br>
+      メールアドレス収集フォームが表示されます。
+    </div>
+  </div>
 </div>
 
 <!-- フッター -->
